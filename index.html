@@ -49,6 +49,45 @@
     a:hover, a:focus { color: var(--link-hover); border-color: var(--link-hover); }
     a:focus-visible { outline: 2px solid #aaa; outline-offset: 2px; }
 
+    nav li { position: relative; }
+
+.droplabel {
+  cursor: default;
+  font-size: .95rem;
+  letter-spacing: .04em;
+  color: var(--muted);
+  transition: color .2s ease;
+}
+.dropdown:hover .droplabel,
+.dropdown:focus-within .droplabel { color: var(--fg); }
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: .9rem 0 0;   /* keeps hover alive across the gap */
+  list-style: none;
+  background: var(--bg);
+  z-index: 10;
+}
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu { display: block; }
+
+.dropdown-menu a {
+  display: block;
+  padding: .3rem .8rem;
+  font-size: .9rem;
+  color: var(--muted);
+  border-bottom: none;
+  white-space: nowrap;
+  transition: color .2s ease;
+}
+.dropdown-menu a:hover,
+.dropdown-menu a:focus { color: var(--fg); }
+
     h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; }
 
     /* =========================================================
@@ -257,6 +296,12 @@
       .intro { flex-direction: column; align-items: center; text-align: center; }
       .headshot { flex-basis: auto; width: 200px; }
       nav ul { gap: .4rem 1.25rem; }
+      .dropdown-menu {
+  display: block;
+  position: static;
+  transform: none;
+  padding: .5rem 0 0;
+}
     }
   </style>
 </head>
@@ -278,15 +323,13 @@
           <li><label for="t-home">Home</label></li>
           <li><label for="t-teaching">Teaching Statement</label></li>
           <li><label for="t-cv">CV</label></li>
-          <li>
-  <details class="dropdown">
-    <summary>Digital Teaching Tools</summary>
-    <ul class="dropdown-menu">
-      <li><a href="https://fatromistastic.github.io/timbralaxis/" target="_blank" rel="noopener noreferrer">Timbral Axis — Conceptual Space</a></li>
-      <li><a href="https://fatromistastic.github.io/musicdemos/" target="_blank" rel="noopener noreferrer">Vibrational Modes of a Plate</a></li>
-      <li><a href="https://fatromistastic.github.io/imageandsound/" target="_blank" rel="noopener noreferrer">Turn an Image into Sound</a></li>
-    </ul>
-  </details>
+          <li class="dropdown">
+  <span class="droplabel">Digital Teaching Tools</span>
+  <ul class="dropdown-menu">
+    <li><a href="https://fatromistastic.github.io/timbralaxis/" target="_blank" rel="noopener noreferrer">Timbral Axis — Conceptual Space</a></li>
+    <li><a href="https://fatromistastic.github.io/musicdemos/" target="_blank" rel="noopener noreferrer">Vibrational Modes of a Plate</a></li>
+    <li><a href="https://fatromistastic.github.io/imageandsound/" target="_blank" rel="noopener noreferrer">Turn an Image into Sound</a></li>
+  </ul>
 </li>
           <li><label for="t-work">Creative Portfolio</label></li>
         </ul>
